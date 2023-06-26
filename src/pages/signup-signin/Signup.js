@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import '../../App.css';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import { Button, Form } from 'react-bootstrap';
 import CustomInput from '../../components/custom-input/CustomInput';
 import { toast } from 'react-toastify';
 import { postUser } from '../../helper/axiosHelper';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const [form, setForm] = useState({});
@@ -92,22 +94,30 @@ const Signup = () => {
   return (
     <div>
       <Header />
-
-      <section className="main d-flex flex-column align-items-center justify-content-center">
-        <h1>Add New Admin</h1>
-        <Form
-          onSubmit={handleOnSubmit}
-          className="p-5 border-2 shadow-lg w-full"
-        >
-          {inputs.map((item, i) => (
-            <CustomInput key={i} {...item} onChange={handleOnChange} />
-          ))}
-          <div className="d-grid">
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+      <section className="main">
+        <div className="container">
+          <div className="hero d-flex justify-content-center align-items-center flex-column">
+            <h1 className="p-3">Add New Admin</h1>
+            <span>Already have an account?</span>
+            <div className="mt-2 fs-5 border border-secondary text-center p-2 rounded-3">
+              <Link to="/login" className="nav-link">
+                Log In
+              </Link>
+            </div>
           </div>
-        </Form>
+          <div className="registerform p-3 mt-4">
+            <Form onSubmit={handleOnSubmit} className=" border-2 shadow-lg">
+              {inputs.map((item, i) => (
+                <CustomInput key={i} {...item} onChange={handleOnChange} />
+              ))}
+              <div className="d-flex justify-content-center">
+                <Button variant="secondary" type="submit">
+                  Submit
+                </Button>
+              </div>
+            </Form>
+          </div>
+        </div>
       </section>
       <Footer />
     </div>
