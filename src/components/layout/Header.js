@@ -11,33 +11,33 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#home">
+            <Nav.Link href="/index">
               {' '}
               <span className="d-flex flex-column justify-content-center align-items-center">
                 <AiFillHome className="fs-3" /> Home
               </span>
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link href="/dashboard">
               <span className="d-flex flex-column justify-content-center align-items-center">
                 <MdDashboard className="fs-3" />
                 Dashboard
               </span>
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link href="/login">
               {' '}
               <span className="d-flex flex-column justify-content-center align-items-center">
                 <MdLogin className="fs-3" />
                 Sign In
               </span>
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link href="/new-admin">
               {' '}
               <span className="d-flex flex-column justify-content-center align-items-center">
                 <AiOutlineUserAdd className="fs-3" />
                 Sign Up
               </span>
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link href="/logout">
               {' '}
               <span className="d-flex flex-column justify-content-center align-items-center">
                 <MdLogout className="fs-3" />

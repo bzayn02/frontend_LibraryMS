@@ -5,8 +5,13 @@ import { Button, Form } from 'react-bootstrap';
 import CustomInput from '../../components/custom-input/CustomInput';
 import Footer from '../../components/layout/Footer';
 
+import { signInAdminAction } from './userAction';
+import { useDispatch } from 'react-redux';
+
 const Signin = () => {
   const [form, setForm] = useState({});
+
+  const dispatch = useDispatch();
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -16,30 +21,32 @@ const Signin = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    dispatch(signInAdminAction(form));
   };
+
   const inputs = [
     {
       label: 'Email',
       name: 'email',
       required: true,
-      placeholder: 'sam@email.com',
+      placeholder: 'sba@gmail.com',
       type: 'text',
     },
     {
       label: 'Password',
       name: 'password',
       required: true,
-      placeholder: '******',
-      type: 'passwword',
+      placeholder: '11111111',
+      type: 'password',
     },
   ];
   return (
     <div>
       <Header />
-      <section className="main">
+      <section className="main  d-flex align-items-center justify-content-center ">
         <div className="container">
           <div className="hero d-flex justify-content-center align-items-center flex-column">
-            <h1 className="p-3">Login</h1>
+            <h1 className="p-3">Admin Login</h1>
             <span>New here?</span>
             <div className="mt-2 fs-5 border border-secondary text-center p-2 rounded-3">
               <Link to="/new-admin" className="nav-link">
@@ -52,8 +59,8 @@ const Signin = () => {
               {inputs.map((item, i) => (
                 <CustomInput key={i} {...item} onChange={handleOnChange} />
               ))}
-              <div className="d-flex justify-content-center">
-                <Button variant="secondary" type="submit">
+              <div className="d-flex justify-content-center d-grid">
+                <Button className="btn btn-secondary " type="submit">
                   Submit
                 </Button>
               </div>
