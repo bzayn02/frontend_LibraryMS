@@ -54,14 +54,14 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link className="nav-link" to="/login">
+                <Link className="nav-link" to="/signin">
                   {' '}
                   <span className="d-flex flex-column justify-content-center align-items-center">
                     <MdLogin className="fs-3" />
                     Sign In
                   </span>
                 </Link>
-                <Link className="nav-link" to="/new-admin">
+                <Link className="nav-link" to="/signup">
                   {' '}
                   <span className="d-flex flex-column justify-content-center align-items-center">
                     <AiOutlineUserAdd className="fs-3" />

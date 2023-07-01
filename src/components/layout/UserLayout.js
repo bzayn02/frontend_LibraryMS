@@ -3,19 +3,71 @@ import Header from './Header';
 import { Container } from 'react-bootstrap';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const UserLayout = ({ children }) => {
+const UserLayout = ({ children, title }) => {
+  const { user } = useSelector((state) => state.userInfo);
   return (
     <div className="d-flex">
       <div className="left-menu bg-dark text-light w-20">
-        <div className="text-center mt-3 fs-4 p-2">Admin</div>
+        <div className="text-center mt-3 fs-4 p-2">
+          {user?.role?.toUpperCase()}
+        </div>
         <hr />
-        <ul type="none">
-          <li className="d-flex align-items-center justify-content-center">
-            <Link to="/dashboard" className="nav-link fs-5 ">
-              Dashboard
-            </Link>
-          </li>
+        <ul>
+          {user?.role === 'admin' ? (
+            <>
+              <li>
+                <Link to="/dashboard" className="nav-link fs-5 ">
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/borrow-history" className="nav-link fs-5 ">
+                  Borrow History
+                </Link>
+              </li>
+              <li>
+                <Link to="/books" className="nav-link fs-5 ">
+                  Books
+                </Link>
+              </li>
+              <li>
+                <Link to="/students" className="nav-link fs-5 ">
+                  Students
+                </Link>
+              </li>
+              <hr />
+              <li>
+                <Link to="/signup" className="nav-link fs-5 ">
+                  Sign Up
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile" className="nav-link fs-5 ">
+                  Profile
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/dashboard" className="nav-link fs-5 ">
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/borrow-history" className="nav-link fs-5 ">
+                  Borrow History
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile" className="nav-link fs-5 ">
+                  Profile
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
 

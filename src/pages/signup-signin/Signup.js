@@ -7,9 +7,13 @@ import CustomInput from '../../components/custom-input/CustomInput';
 import { toast } from 'react-toastify';
 import { postUser } from '../../helper/axiosHelper';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Signup = () => {
-  const [form, setForm] = useState({});
+  const { user } = useSelector((state) => state.userInfo);
+  const [form, setForm] = useState({
+    role: 'student',
+  });
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -97,7 +101,16 @@ const Signup = () => {
       <section className="main">
         <div className="container">
           <div className="hero d-flex justify-content-center align-items-center flex-column">
-            <h1 className="p-3">Add New Admin</h1>
+            <h1 className="p-3">
+              Create New Account{' '}
+              {user?.role === 'admin' && (
+                <Form.Select onChange={handleOnChange}>
+                  <option value="">--Select--</option>
+                  <option value="admin">Admin</option>
+                  <option value="student">Student</option>
+                </Form.Select>
+              )}
+            </h1>
             <span>Already have an account?</span>
             <div className="mt-2 fs-5 border border-secondary text-center p-2 rounded-3">
               <Link to="/login" className="nav-link">

@@ -35,6 +35,11 @@
   width: 20%;
 }
 
+.left-menu li {
+  list-style: none;
+  margin-left: 2rem;
+}
+
 .right-menu {
   width: 80%;
 }

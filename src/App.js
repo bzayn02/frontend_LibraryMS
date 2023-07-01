@@ -7,21 +7,21 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './pages/dashboard/Dashboard';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
+import Books from './pages/books/Books';
+import BorrowHistory from './pages/borrowHistory/BorrowHistory';
+import Profile from './pages/profile/Profile';
 
 function App() {
   return (
     <div className="">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/new-admin"
-          element={
-            <PrivateRoute>
-              <Signup />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/login" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/borrow-history" element={<BorrowHistory />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/signin" element={<Signin />} />
         {/* Private Routes */}{' '}
         <Route
           path="/dashboard"
