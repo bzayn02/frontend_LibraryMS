@@ -4,7 +4,7 @@ import UserLayout from '../../components/layout/UserLayout';
 const Dashboard = () => {
   return (
     <div>
-      <UserLayout>Dashboard</UserLayout>
+      <UserLayout title="Dashboard">Dashboard</UserLayout>
     </div>
   );
 };

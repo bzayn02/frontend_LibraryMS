@@ -15,18 +15,18 @@ const UserLayout = ({ children, title }) => {
         </div>
         <hr />
         <ul>
-          {user?.role === 'admin' ? (
+          <li>
+            <Link to="/dashboard" className="nav-link fs-5 ">
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link to="/borrow-history" className="nav-link fs-5 ">
+              Borrow History
+            </Link>
+          </li>
+          {user?.role === 'admin' && (
             <>
-              <li>
-                <Link to="/dashboard" className="nav-link fs-5 ">
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link to="/borrow-history" className="nav-link fs-5 ">
-                  Borrow History
-                </Link>
-              </li>
               <li>
                 <Link to="/books" className="nav-link fs-5 ">
                   Books
@@ -43,37 +43,24 @@ const UserLayout = ({ children, title }) => {
                   Sign Up
                 </Link>
               </li>
-              <li>
-                <Link to="/profile" className="nav-link fs-5 ">
-                  Profile
-                </Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link to="/dashboard" className="nav-link fs-5 ">
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link to="/borrow-history" className="nav-link fs-5 ">
-                  Borrow History
-                </Link>
-              </li>
-              <li>
-                <Link to="/profile" className="nav-link fs-5 ">
-                  Profile
-                </Link>
-              </li>
             </>
           )}
+
+          <li>
+            <Link to="/profile" className="nav-link fs-5 ">
+              Profile
+            </Link>
+          </li>
         </ul>
       </div>
 
       <div className="right-menu">
         <Header />
-        <Container className="page">{children}</Container>
+        <Container className="page">
+          <h1 className="mt-2">{title}</h1>
+          <hr />
+          {children}
+        </Container>
         <Footer />
       </div>
     </div>

@@ -10,6 +10,7 @@ import PrivateRoute from './components/privateRoute/PrivateRoute';
 import Books from './pages/books/Books';
 import BorrowHistory from './pages/borrowHistory/BorrowHistory';
 import Profile from './pages/profile/Profile';
+import Students from './pages/students/Students';
 
 function App() {
   return (
@@ -18,11 +19,42 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/books" element={<Books />} />
-        <Route path="/borrow-history" element={<BorrowHistory />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/signin" element={<Signin />} />
-        {/* Private Routes */}{' '}
+
+        {/* Private Routes */}
+
+        <Route
+          path="/books"
+          element={
+            <PrivateRoute>
+              <Books />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/borrow-history"
+          element={
+            <PrivateRoute>
+              <BorrowHistory />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/students"
+          element={
+            <PrivateRoute>
+              <Students />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/dashboard"
           element={
