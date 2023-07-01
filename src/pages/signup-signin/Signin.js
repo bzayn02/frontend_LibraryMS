@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/layout/Header';
-import { Link } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Container, Form } from 'react-bootstrap';
 import CustomInput from '../../components/custom-input/CustomInput';
 import Footer from '../../components/layout/Footer';
 
 import { signInAdminAction } from './userAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Signin = () => {
-  const [form, setForm] = useState({});
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({});
+  const { user } = useSelector((state) => state.userInfo);
 
+  useEffect(() => {
+    user?._id && navigate('/dashboard');
+  }, [user?._id, navigate]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -44,7 +48,7 @@ const Signin = () => {
     <div>
       <Header />
       <section className="main  d-flex align-items-center justify-content-center ">
-        <div className="container">
+        <Container>
           <div className="hero d-flex justify-content-center align-items-center flex-column">
             <h1 className="p-3">Admin Login</h1>
             <span>New here?</span>
@@ -66,7 +70,7 @@ const Signin = () => {
               </div>
             </Form>
           </div>
-        </div>
+        </Container>
       </section>
       <Footer />
     </div>
