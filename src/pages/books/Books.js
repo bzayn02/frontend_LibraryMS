@@ -13,7 +13,7 @@ const Books = () => {
   ) : (
     <UserLayout title="Books">
       <div className="text-end">
-        <Link to="/new-book">
+        <Link to="/books/new-book">
           <Button className="btn btn-secondary">Add New Book</Button>
         </Link>
       </div>

@@ -39,7 +39,44 @@ export const postBook = async (bookData) => {
   } catch (error) {
     return {
       status: 'error',
-      message: 'error.message',
+      message: error.message,
+    };
+  }
+};
+
+export const getBooks = async () => {
+  try {
+    const { data } = await axios.get(bookAPI);
+    return data;
+  } catch (error) {
+    return { status: 'error', message: error.message };
+  }
+};
+
+//Update book
+export const updateBook = async (bookData) => {
+  try {
+    const response = await axios.put(bookAPI, bookData);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    return {
+      status: 'error',
+      message: error.message,
+    };
+  }
+};
+
+// Delete book
+export const deleteBook = async (_id) => {
+  try {
+    const response = await axios.delete(bookAPI + '/' + _id);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    return {
+      status: 'error',
+      message: error.message,
     };
   }
 };

@@ -40,7 +40,7 @@ const UserLayout = ({ children, title }) => {
               <hr />
               <li>
                 <Link to="/signup" className="nav-link fs-5 ">
-                  Sign Up
+                  Add Admin
                 </Link>
               </li>
             </>
