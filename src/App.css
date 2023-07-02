@@ -40,10 +40,10 @@
   margin-left: 2rem;
 }
 
-.right-menu {
-  width: 80%;
+.page {
+  min-height: 80vh;
 }
 
-.page {
-  height: 80vh;
+.right-menu {
+  width: 80%;
 }

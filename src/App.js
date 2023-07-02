@@ -11,6 +11,7 @@ import Books from './pages/books/Books';
 import BorrowHistory from './pages/borrowHistory/BorrowHistory';
 import Profile from './pages/profile/Profile';
 import Students from './pages/students/Students';
+import NewBookForm from './components/book-Component/NewBookForm';
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
           element={
             <PrivateRoute>
               <Books />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/new-book"
+          element={
+            <PrivateRoute>
+              <NewBookForm />
             </PrivateRoute>
           }
         />
