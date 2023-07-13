@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const CustomCard = ({ title, author, thumbnail, summary }) => {
   return (
@@ -11,7 +11,9 @@ const CustomCard = ({ title, author, thumbnail, summary }) => {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Title>{author}</Card.Title>
-        <Card.Text>{summary}</Card.Text>
+        <Card.Text>
+          {summary.substring(0, 100)} {'...'}
+        </Card.Text>
       </Card.Body>
     </Card>
   );
