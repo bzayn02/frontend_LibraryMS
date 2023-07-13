@@ -111,12 +111,16 @@ const Signup = () => {
                 </Form.Select>
               )}
             </h1>
-            <span>Already have an account?</span>
-            <div className="mt-2 fs-5 border border-secondary text-center p-2 rounded-3">
-              <Link to="/login" className="nav-link">
-                Log In
-              </Link>
-            </div>
+            {!user._id && (
+              <div>
+                <span>Already have an account?</span>
+                <div className="mt-2 fs-5 border border-secondary text-center p-2 rounded-3">
+                  <Link to="/signin" className="nav-link">
+                    Log In
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
           <div className="registerform p-3 mt-4">
             <Form onSubmit={handleOnSubmit} className=" border-2 shadow-lg">

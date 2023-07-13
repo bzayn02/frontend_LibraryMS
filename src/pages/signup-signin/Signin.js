@@ -51,12 +51,16 @@ const Signin = () => {
         <Container>
           <div className="hero d-flex justify-content-center align-items-center flex-column">
             <h1 className="p-3">Admin Login</h1>
-            <span>New here?</span>
-            <div className="mt-2 fs-5 border border-secondary text-center p-2 rounded-3">
-              <Link to="/new-admin" className="nav-link">
-                Register Now
-              </Link>
-            </div>
+            {!user?._id && (
+              <>
+                <span>New here?</span>
+                <div className="mt-2 fs-5 border border-secondary text-center p-2 rounded-3">
+                  <Link to="/new-admin" className="nav-link">
+                    Register Now
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
           <div className="registerform p-3 mt-4">
             <Form onSubmit={handleOnSubmit} className=" border-2 shadow-lg">

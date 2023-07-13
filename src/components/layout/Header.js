@@ -24,7 +24,7 @@ const Header = () => {
     navigate('/');
   };
   return (
-    <Navbar bgexpand="md" bg="dark" variant="dark">
+    <Navbar expand="md" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand to="/">Library Management Admin</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
