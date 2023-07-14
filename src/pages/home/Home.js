@@ -43,7 +43,7 @@ const Home = () => {
               ></Form.Control>
             </div>
           </div>
-          <div className="book-list justify-content-between flex-wrap gap-4">
+          <div className="book-list flex-wrap gap-4">
             {display.map((item) => (
               <Link to={`/book/${item._id}`} className="nav-link">
                 {' '}

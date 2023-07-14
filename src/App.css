@@ -63,7 +63,7 @@
 
 .book-landing img {
   width: 80%;
-  object-fit: scale-down;
+  object-fit: contain;
 }
 
 .left-name {

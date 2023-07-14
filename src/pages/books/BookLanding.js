@@ -1,19 +1,22 @@
 import React from 'react';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { addBorrowAction } from '../borrowHistory/borrowAction';
-import { AiFillHtml5 } from 'react-icons/ai';
 
 const BookLanding = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { _id } = useParams();
   const { books } = useSelector((state) => state.bookInfo);
   const { user } = useSelector((state) => state.userInfo);
   const { title, author, year, thumbnail, summary, isAvailable, dueDate } =
     books.find((item) => item._id === _id) || {};
+  if (!title) {
+    navigate('/');
+  }
 
   const handleOnBorrow = () => {
     if (window.confirm('Are you sure you want to borrow the book?')) {
@@ -51,7 +54,7 @@ const BookLanding = () => {
                     </Button>
                   ) : (
                     <Button onClick={handleOnBorrow} disabled variant="dark">
-                      Available from : {dueDate.slice(0, 10)}
+                      Available from : {dueDate?.slice(0, 10)}
                     </Button>
                   )}
                 </div>

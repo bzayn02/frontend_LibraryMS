@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 const CustomCard = ({ title, author, thumbnail, summary }) => {
   return (
     <Card
-      style={{ width: '18rem', height: '40rem' }}
+      style={{ width: '17rem', height: '40rem' }}
       className="card-style mb-5"
     >
       <Card.Img variant="top" src={thumbnail} />
