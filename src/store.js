@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import userReducer from './pages/signup-signin/userSlice';
 import bookReducer from './pages/books/bookSlice';
 import borrowReducer from './pages/borrowHistory/borrowSlice';
+import usersReducer from './pages/students/UsersSlice';
 
 const userPersistConfig = {
   key: 'userInfo',
@@ -15,6 +16,7 @@ const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 const store = configureStore({
   reducer: {
     userInfo: persistedUserReducer,
+    allUsersInfo: usersReducer,
     bookInfo: bookReducer,
     borrowInfo: borrowReducer,
   },

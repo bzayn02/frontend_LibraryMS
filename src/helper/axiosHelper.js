@@ -27,7 +27,7 @@ export const postUser = async (userData) => {
   } catch (error) {
     return {
       status: 'error',
-      message: 'error.message',
+      message: error.message,
     };
   }
 };
@@ -39,7 +39,25 @@ export const loginUser = async (userData) => {
   } catch (error) {
     return {
       status: 'error',
-      message: 'error.message',
+      message: error.message,
+    };
+  }
+};
+
+// Get all users
+
+export const getUsers = async () => {
+  try {
+    const { data } = await axios.get(userAPI, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
+    return data;
+  } catch (error) {
+    return {
+      status: 'error',
+      message: error.message,
     };
   }
 };

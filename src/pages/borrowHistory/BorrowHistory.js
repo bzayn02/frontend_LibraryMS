@@ -44,7 +44,7 @@ const BorrowHistory = () => {
               <td>{borrow.bookName}</td>
               <td>{borrow.userName}</td>
               <td>{borrow?.dueDate?.slice(0, 10)}</td>
-              <td>{borrow.returnDate}</td>
+              <td>{borrow?.returnDate?.slice(0, 10)}</td>
               <td>
                 {borrow.userID === user._id && !borrow.isReturned ? (
                   <Button onClick={() => handleOnReturn(borrow)}>Return</Button>
