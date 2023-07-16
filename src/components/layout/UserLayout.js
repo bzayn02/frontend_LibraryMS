@@ -33,6 +33,11 @@ const UserLayout = ({ children, title }) => {
                 </Link>
               </li>
               <li>
+                <Link to="/reviews" className="nav-link fs-5 ">
+                  Reviews
+                </Link>
+              </li>
+              <li>
                 <Link to="/students" className="nav-link fs-5 ">
                   Students
                 </Link>

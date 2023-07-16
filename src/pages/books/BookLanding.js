@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { addBorrowAction } from '../borrowHistory/borrowAction';
+import Stars from '../../components/star/Stars';
 
 const BookLanding = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const BookLanding = () => {
   const { _id } = useParams();
   const { books } = useSelector((state) => state.bookInfo);
   const { user } = useSelector((state) => state.userInfo);
+  const { reviews } = useSelector((state) => state.reviewInfo);
   const { title, author, year, thumbnail, summary, isAvailable, dueDate } =
     books.find((item) => item._id === _id) || {};
   if (!title) {
@@ -30,6 +32,15 @@ const BookLanding = () => {
       dispatch(addBorrowAction(obj));
     }
   };
+
+  const reviewList = reviews.filter(
+    ({ bookID, status }) => bookID === _id && status === 'active'
+  );
+
+  const star =
+    reviewList.reduce((acc, item) => acc + item?.star, 0) / reviewList?.length;
+  console.log(star);
+  console.log(reviewList, reviews);
   return (
     <div>
       <Header />
@@ -44,7 +55,9 @@ const BookLanding = () => {
               <p>
                 {author} - {year}
               </p>
-              <p>5 star</p>
+              <p>
+                <Stars num={star} />
+              </p>
               <p>{summary}</p>
               {user?._id ? (
                 <div className="d-grid">
@@ -68,29 +81,33 @@ const BookLanding = () => {
               )}
             </Col>
           </Row>
+
           <Row className="mt-4">
             <Col>
               <h3 className="text-center">Reviews</h3>
               <hr />
-              <div className="review-lists d-flex justify-content-center my-4 w-100 gap-4">
-                <Row>
-                  <Col md="3">
-                    <div className="left-name d-flex justify-content-center align-items-center fs-3 bg-secondary-subtle">
-                      BN
+              <div className="review-lists">
+                {reviewList.map(
+                  ({ _id, title, message, star, userName }, i) => (
+                    <div
+                      key={i}
+                      className="w-50 d-flex justify-content-center align-items-center"
+                    >
+                      <div className="left-name d-flex justify-content-center align-items-center fs-3 bg-secondary-subtle">
+                        {userName[0].toUpperCase()}
+                      </div>
+
+                      <div className="right-description">
+                        <h4>{title}</h4>
+                        <div>
+                          <Stars num={star} />
+                        </div>
+                        <p>{message}</p>
+                        <p className="text-end">-{userName}</p>
+                      </div>
                     </div>
-                  </Col>
-                  <Col md="9">
-                    <div className="right-description">
-                      <h4>Amazing Book</h4>
-                      <div>5 star</div>
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit.
-                      </p>
-                      <p className="text-end">-Bijay Nagarkoti</p>
-                    </div>
-                  </Col>
-                </Row>
+                  )
+                )}
               </div>
             </Col>
           </Row>

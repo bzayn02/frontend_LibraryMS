@@ -5,6 +5,8 @@ import userReducer from './pages/signup-signin/userSlice';
 import bookReducer from './pages/books/bookSlice';
 import borrowReducer from './pages/borrowHistory/borrowSlice';
 import usersReducer from './pages/students/UsersSlice';
+import reviewReducer from './pages/reviews/reviewSlice';
+import systemReducer from './system/systemSlice';
 
 const userPersistConfig = {
   key: 'userInfo',
@@ -19,6 +21,8 @@ const store = configureStore({
     allUsersInfo: usersReducer,
     bookInfo: bookReducer,
     borrowInfo: borrowReducer,
+    system: systemReducer,
+    reviewInfo: reviewReducer,
   },
 });
 

@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const rootAPI = 'http://localhost:8000';
-const userAPI = rootAPI + '/api/v1/user';
-const bookAPI = rootAPI + '/api/v1/book';
+const rootAPI = 'http://localhost:8000/api/v1';
+const userAPI = rootAPI + '/user';
+const bookAPI = rootAPI + '/book';
 const borrowAPI = bookAPI + '/borrow';
+const reviewAPI = rootAPI + '/review';
 
 // Get user ID for authentication
 const getUserIdFromLocalStorage = () => {
@@ -65,7 +66,11 @@ export const getUsers = async () => {
 ///// Books //////
 export const postBook = async (bookData) => {
   try {
-    const response = await axios.post(bookAPI, bookData);
+    const response = await axios.post(bookAPI, bookData, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
     console.log(response);
     return response.data;
   } catch (error) {
@@ -163,5 +168,46 @@ export const returnBorrow = async (obj) => {
       status: 'error',
       message: error.message,
     };
+  }
+};
+
+///// Review //////
+// Post Review
+export const postReview = async (obj) => {
+  try {
+    const { data } = await axios.post(reviewAPI, obj, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
+    return data;
+  } catch (error) {
+    return {
+      status: 'error',
+      message: error.message,
+    };
+  }
+};
+
+// Get Reviews
+export const getReviews = async () => {
+  try {
+    const { data } = await axios.get(reviewAPI);
+    return data;
+  } catch (error) {
+    return { status: 'error', message: error.message };
+  }
+};
+// Update Reviews
+export const updateReviews = async (obj) => {
+  try {
+    const { data } = await axios.patch(reviewAPI, obj, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
+    return data;
+  } catch (error) {
+    return { status: 'error', message: error.message };
   }
 };

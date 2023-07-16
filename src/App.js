@@ -17,6 +17,8 @@ import { useDispatch } from 'react-redux';
 import { getBookAction } from './pages/books/bookAction';
 import EditBookForm from './components/book-Component/EditBookForm';
 import BookLanding from './pages/books/BookLanding';
+import { fetchReviewAction } from './pages/reviews/reviewAction';
+import Reviews from './pages/reviews/Reviews';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getBookAction());
+    dispatch(fetchReviewAction());
   }, [dispatch]);
 
   return (
@@ -41,6 +44,14 @@ function App() {
           element={
             <PrivateRoute>
               <Books />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reviews"
+          element={
+            <PrivateRoute>
+              <Reviews />
             </PrivateRoute>
           }
         />

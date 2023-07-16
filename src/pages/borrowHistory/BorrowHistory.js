@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserLayout from '../../components/layout/UserLayout';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBorrowAction, returnBorrowAction } from './borrowAction';
+import ReviewForm from '../../components/review/ReviewForm';
+import CustomModal from '../../components/modal/CustomModal';
+import { setModalShow } from '../../system/systemSlice';
 
 const BorrowHistory = () => {
+  const [selectedReview, setSelectedReview] = useState({});
   const { borrows } = useSelector((state) => state.borrowInfo);
   const { user } = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
@@ -20,8 +24,21 @@ const BorrowHistory = () => {
       dispatch(returnBorrowAction(obj));
     }
   };
+
+  const handleOnReview = (borrowBook) => {
+    setSelectedReview(borrowBook);
+    dispatch(setModalShow(true));
+  };
   return (
     <UserLayout title="Borrow History">
+      {selectedReview?._id && (
+        <CustomModal
+          modalTitle={`Leave your review for ${selectedReview?.bookName}`}
+        >
+          <ReviewForm selectedReview={selectedReview} />
+        </CustomModal>
+      )}
+
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -48,8 +65,15 @@ const BorrowHistory = () => {
               <td>
                 {borrow.userID === user._id && !borrow.isReturned ? (
                   <Button onClick={() => handleOnReturn(borrow)}>Return</Button>
+                ) : borrow?.isReviewGiven ? (
+                  'Review Given'
                 ) : (
-                  <Button variant="success">Leave Review</Button>
+                  <Button
+                    variant="success"
+                    onClick={() => handleOnReview(borrow)}
+                  >
+                    Leave Review
+                  </Button>
                 )}
               </td>
             </tr>
